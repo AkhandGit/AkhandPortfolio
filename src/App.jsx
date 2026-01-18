@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { BrowserRouter } from 'react-router-dom'
 import Preloader from './components/Preloader'
+import Header from './components/Header'
 import './App.css'
 
 function App() {
@@ -20,18 +22,27 @@ function App() {
   }, [])
 
   return (
-    <main>
-      <AnimatePresence mode='wait'>
-        {isLoading && <Preloader />}
-      </AnimatePresence>
-      
-      {!isLoading && (
-        <div style={{ padding: '100px 20px', minHeight: '100vh' }}>
-          <h1>Portfolio Content Goes Here</h1>
-          <p>Preloader animation complete! ✅</p>
-        </div>
-      )}
-    </main>
+    <BrowserRouter>
+      <main>
+        <AnimatePresence mode='wait'>
+          {isLoading && <Preloader />}
+        </AnimatePresence>
+        
+        <Header />
+        
+        {!isLoading && (
+          <div style={{ padding: '100px 20px', minHeight: '200vh', background: '#fff' }}>
+            <h1 style={{ color: '#000' }}>Portfolio Content Goes Here</h1>
+            <p style={{ color: '#000' }}>Scroll down to see the burger menu appear! ⬇️</p>
+            
+            <div style={{ marginTop: '150vh', color: '#000' }}>
+              <h2>Keep scrolling...</h2>
+              <p>The header should have transformed into a burger menu by now!</p>
+            </div>
+          </div>
+        )}
+      </main>
+    </BrowserRouter>
   )
 }
 
