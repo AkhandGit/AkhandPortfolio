@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
+import Preloader from './components/Preloader'
 import './App.css'
 
 function App() {
@@ -19,17 +21,16 @@ function App() {
 
   return (
     <main>
-      <h1>Awwwards Portfolio - Vite Setup</h1>
-      <p>Ready to build! 🚀</p>
+      <AnimatePresence mode='wait'>
+        {isLoading && <Preloader />}
+      </AnimatePresence>
       
-      {/* Components will go here */}
-      {/* {isLoading && <Preloader />} */}
-      {/* <Header /> */}
-      {/* <Landing /> */}
-      {/* <Description /> */}
-      {/* <Projects /> */}
-      {/* <SlidingImages /> */}
-      {/* <Contact /> */}
+      {!isLoading && (
+        <div style={{ padding: '100px 20px', minHeight: '100vh' }}>
+          <h1>Portfolio Content Goes Here</h1>
+          <p>Preloader animation complete! ✅</p>
+        </div>
+      )}
     </main>
   )
 }
