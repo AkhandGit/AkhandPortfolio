@@ -6,9 +6,9 @@
 - [x] Vite setup
 - [x] Dependencies installed
 - [x] Folder structure created
+- [x] Preloader component
 
 ### Next Steps:
-- [ ] Build Preloader component
 - [ ] Build Header component
 - [ ] Build Landing component
 
