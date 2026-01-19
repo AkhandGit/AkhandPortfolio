@@ -1,109 +1,95 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-import Nav from './nav';
-import styles from './style.module.scss';
-import Rounded from '../common/RoundedButton';
-import Magnetic from '../common/Magnetic';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import gsap from 'gsap'
+import Nav from './nav'
+import Magnetic from '../common/Magnetic' // Importing your magnetic component
+import styles from './style.module.scss'
 
 export default function Header() {
-    const header = useRef(null);
-    const button = useRef(null);
-    const [isActive, setIsActive] = useState(false);
-    const location = useLocation();
+  const header = useRef(null)
+  const button = useRef(null)
+  const [isActive, setIsActive] = useState(false)
+  const location = useLocation()
 
-    // Close the navigation menu whenever the URL path changes
-    useEffect(() => {
-        if (isActive) setIsActive(false);
-    }, [location.pathname]);
+  // Close menu on route change
+  useEffect(() => {
+    if (isActive) setIsActive(false)
+  }, [location])
 
-    useLayoutEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
 
-        // 1. Logic to hide the main navigation bar immediately upon scrolling
-        gsap.to(header.current, {
-            scrollTrigger: {
-                trigger: document.documentElement,
-                start: "top top",
-                // Disappears within the first 100px of scrolling down
-                end: 100, 
-                onLeave: () => {
-                    gsap.to(header.current, { y: "-100%", duration: 0.2, ease: "power1.out" })
-                },
-                onEnterBack: () => {
-                    gsap.to(header.current, { y: "0%", duration: 0.2, ease: "power1.out" })
-                }
-            }
-        });
+    // 1. Hide the main desktop header as soon as user starts scrolling
+    gsap.to(header.current, {
+      scrollTrigger: {
+        trigger: document.documentElement,
+        start: "top top",
+        end: 100, // Disappears within 100px of scroll
+        onLeave: () => {
+          gsap.to(header.current, { y: "-100%", duration: 0.3, ease: "power2.out" })
+        },
+        onEnterBack: () => {
+          gsap.to(header.current, { y: "0%", duration: 0.3, ease: "power2.out" })
+        }
+      }
+    })
 
-        // 2. Logic to scale in the burger button after reaching the second section (100vh)
-        gsap.to(button.current, {
-            scrollTrigger: {
-                trigger: document.documentElement,
-                // Appears exactly when the user has scrolled one full viewport height
-                start: "window.innerHeight", 
-                onEnter: () => {
-                    gsap.to(button.current, { scale: 1, duration: 0.25, ease: "power1.out" })
-                },
-                onLeaveBack: () => {
-                    gsap.to(button.current, { scale: 0, duration: 0.25, ease: "power1.out" })
-                    // Safety check: close the nav if the user scrolls back to the hero section
-                    setIsActive(false);
-                }
-            }
-        });
-    }, []);
+    // 2. Show the burger button only after scrolling past the first "page" (Hero)
+    gsap.to(button.current, {
+      scrollTrigger: {
+        trigger: document.documentElement,
+        start: "window.innerHeight", // Appears when you hit the second section
+        onEnter: () => {
+          gsap.to(button.current, { scale: 1, duration: 0.25, ease: "power1.out" })
+        },
+        onLeaveBack: () => {
+          gsap.to(button.current, { scale: 0, duration: 0.25, ease: "power1.out" })
+          setIsActive(false) // Safety: close nav if user scrolls back to top
+        }
+      }
+    })
+  }, [])
 
-    return (
-        <>
-            {/* Main Desktop Header */}
-            <div ref={header} className={styles.header}>
-                <div className={styles.logo}>
-                    <p className={styles.copyright}>©</p>
-                    <div className={styles.name}>
-                        <p className={styles.codeBy}>Code by</p>
-                        <p className={styles.akhand}>Akhand</p>
-                    </div>
-                </div>
-                <div className={styles.nav}>
-                    <Magnetic>
-                        <div className={styles.el}>
-                            <a href="#work">Work</a>
-                            <div className={styles.indicator}></div>
-                        </div>
-                    </Magnetic>
-                    <Magnetic>
-                        <div className={styles.el}>
-                            <a href="#about">About</a>
-                            <div className={styles.indicator}></div>
-                        </div>
-                    </Magnetic>
-                    <Magnetic>
-                        <div className={styles.el}>
-                            <a href="#contact">Contact</a>
-                            <div className={styles.indicator}></div>
-                        </div>
-                    </Magnetic>
-                </div>
-            </div>
+  return (
+    <>
+      <div ref={header} className={styles.header}>
+        <div className={styles.logo}>
+          <p className={styles.copyright}>©</p>
+          <div className={styles.name}>
+            <p className={styles.codeBy}>Code by</p>
+            <p className={styles.akhand}>Akhand</p>
+          </div>
+        </div>
+        <div className={styles.nav}>
+          <div className={styles.el}>
+            <a>Work</a>
+            <div className={styles.indicator}></div>
+          </div>
+          <div className={styles.el}>
+            <a>About</a>
+            <div className={styles.indicator}></div>
+          </div>
+          <div className={styles.el}>
+            <a>Contact</a>
+            <div className={styles.indicator}></div>
+          </div>
+        </div>
+      </div>
 
-            {/* Floating Burger Button (Appears on Scroll) */}
-            <div ref={button} className={styles.headerButtonContainer}>
-                <Rounded 
-                    onClick={() => setIsActive(!isActive)} 
-                    className={`${styles.button}`}
-                >
-                    <div className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}></div>
-                </Rounded>
-            </div>
+      <div ref={button} className={styles.headerButtonContainer}>
+        {/* Wrapping the button in your Magnetic component */}
+        <Magnetic>
+          <div onClick={() => setIsActive(!isActive)} className={styles.button}>
+            <div className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}></div>
+          </div>
+        </Magnetic>
+      </div>
 
-            {/* Navigation Overlay */}
-            <AnimatePresence mode="wait">
-                {isActive && <Nav />}
-            </AnimatePresence>
-        </>
-    );
+      <AnimatePresence mode="wait">
+        {isActive && <Nav />}
+      </AnimatePresence>
+    </>
+  )
 }
