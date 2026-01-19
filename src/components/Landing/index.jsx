@@ -1,6 +1,8 @@
 import React, { useLayoutEffect, useRef } from 'react'
 import styles from './style.module.scss';
 import gsap from 'gsap';
+import { motion } from 'framer-motion';
+import { slideUp } from './animation';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Landing() {
@@ -36,23 +38,27 @@ export default function Landing() {
     }
 
     gsap.set(slider.current, { xPercent: xPercent });
-    xPercent += 0.010 * direction; // Your slow speed
+    xPercent += 0.005 * direction; // Your slow speed
     requestAnimationFrame(animate);
   }
 
   return (
-    <main className={styles.landing}>
+    <motion.main 
+      variants={slideUp} 
+      initial="initial" 
+      animate="enter" 
+      className={styles.landing}
+    >
       <img src="/images/background.png" alt="background" />
       
       <div className={styles.sliderContainer}>
         <div ref={slider} className={styles.slider}>
-          {/* We repeat the pattern 4 times to ensure a seamless bridge */}
           <p>Akhand — MERN Developer — </p>
           <p>Akhand — MERN Developer — </p>
           <p>Akhand — MERN Developer — </p>
           <p>Akhand — MERN Developer — </p>
         </div>
       </div>
-    </main>
+    </motion.main>
   )
 }

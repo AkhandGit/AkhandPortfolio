@@ -28,7 +28,7 @@ export default function Header() {
         start: "top top",
         end: 150, // Disappears within 100px of scroll
         onLeave: () => {
-          gsap.to(header.current, { y: "-100%", duration: 0.2, ease: "power2.in" })
+          gsap.to(header.current, { y: "-100%", duration: 0.05, ease: "power2.in" })
         },
         onEnterBack: () => {
           gsap.to(header.current, { y: "0%", duration: 0.2, ease: "power2.out" })
@@ -58,8 +58,7 @@ export default function Header() {
         <div className={styles.logo}>
           <p className={styles.copyright}>©</p>
           <div className={styles.name}>
-            <p className={styles.codeBy}>Code by</p>
-            <p className={styles.akhand}>Akhand</p>
+            <p className={styles.codeBy}>Code by Akhand</p>
           </div>
         </div>
         <div className={styles.nav}>
