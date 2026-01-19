@@ -37,7 +37,7 @@ function App() {
             
             <div style={{ marginTop: '150vh', color: '#000' }}>
               <h2>Keep scrolling...</h2>
-              <p>The header should have transformed into a burger menu by now!</p>
+              <p>Hello</p>
             </div>
           </div>
         )}
