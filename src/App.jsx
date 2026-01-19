@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion'
 import { BrowserRouter } from 'react-router-dom'
 import Preloader from './components/Preloader'
 import Header from './components/Header'
+import Landing from './components/Landing';
 import './App.css'
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         </AnimatePresence>
         
         <Header />
+        <Landing />
         
         {!isLoading && (
           <div style={{ padding: '100px 20px', minHeight: '200vh', background: '#fff' }}>
