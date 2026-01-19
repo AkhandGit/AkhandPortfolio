@@ -26,12 +26,12 @@ export default function Header() {
       scrollTrigger: {
         trigger: document.documentElement,
         start: "top top",
-        end: 100, // Disappears within 100px of scroll
+        end: 150, // Disappears within 100px of scroll
         onLeave: () => {
-          gsap.to(header.current, { y: "-100%", duration: 0.3, ease: "power2.out" })
+          gsap.to(header.current, { y: "-100%", duration: 0.2, ease: "power2.in" })
         },
         onEnterBack: () => {
-          gsap.to(header.current, { y: "0%", duration: 0.3, ease: "power2.out" })
+          gsap.to(header.current, { y: "0%", duration: 0.2, ease: "power2.out" })
         }
       }
     })
@@ -42,7 +42,7 @@ export default function Header() {
         trigger: document.documentElement,
         start: "window.innerHeight", // Appears when you hit the second section
         onEnter: () => {
-          gsap.to(button.current, { scale: 1, duration: 0.25, ease: "power1.out" })
+          gsap.to(button.current, { scale: 1, duration: 0.5, ease: "back.out(1.7)" })
         },
         onLeaveBack: () => {
           gsap.to(button.current, { scale: 0, duration: 0.25, ease: "power1.out" })

@@ -1,20 +1,17 @@
 import React, { useLayoutEffect, useRef } from 'react'
+import styles from './style.module.scss';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import styles from './style.module.scss';
 
-export default function Index() {
-
-  const firstText = useRef(null);
-  const secondText = useRef(null);
+export default function Landing() {
   const slider = useRef(null);
   let xPercent = 0;
-  let direction = -1;
+  let direction = 1;
 
-  useLayoutEffect( () => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     
-    // This moves the slider container horizontally as you scroll down
+    // This handles the "Scroll Speed" interaction
     gsap.to(slider.current, {
       scrollTrigger: {
         trigger: document.documentElement,
@@ -30,38 +27,31 @@ export default function Index() {
   }, [])
 
   const animate = () => {
-    if(xPercent < -100){
+    // We move the slider. Once it has moved 25% (one full set), we reset.
+    if (xPercent <= -25) {
       xPercent = 0;
     }
-    else if(xPercent > 0){
-      xPercent = -100;
+    if (xPercent > 0) {
+      xPercent = -25;
     }
-    
-    gsap.set(firstText.current, {xPercent: xPercent})
-    gsap.set(secondText.current, {xPercent: xPercent})
-    
-    // Base speed of the text
-    xPercent += 0.1 * direction;
+
+    gsap.set(slider.current, { xPercent: xPercent });
+    xPercent += 0.010 * direction; // Your slow speed
     requestAnimationFrame(animate);
   }
 
   return (
     <main className={styles.landing}>
+      <img src="/images/background.png" alt="background" />
+      
       <div className={styles.sliderContainer}>
         <div ref={slider} className={styles.slider}>
-          <p ref={firstText}>Freelance Designer -</p>
-          <p ref={secondText}>Freelance Designer -</p>
+          {/* We repeat the pattern 4 times to ensure a seamless bridge */}
+          <p>Akhand — MERN Developer — </p>
+          <p>Akhand — MERN Developer — </p>
+          <p>Akhand — MERN Developer — </p>
+          <p>Akhand — MERN Developer — </p>
         </div>
-      </div>
-      
-      <div className={styles.description}>
-        <div className={styles.svgContainer}>
-            <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 8.5C8.27614 8.5 8.5 8.27614 8.5 8L8.5 3.5C8.5 3.22386 8.27614 3 8 3C7.72386 3 7.5 3.22386 7.5 3.5V7.5H3.5C3.22386 7.5 3 7.72386 3 8C3 8.27614 3.22386 8.5 3.5 8.5L8 8.5ZM0.646447 1.35355L7.64645 8.35355L8.35355 7.64645L1.35355 0.646447L0.646447 1.35355Z" fill="white"/>
-            </svg>
-        </div>
-        <p>Freelance</p>
-        <p>Designer & Developer</p>
       </div>
     </main>
   )
