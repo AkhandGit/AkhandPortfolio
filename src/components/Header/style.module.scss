@@ -1,136 +1,150 @@
-.header {
-  position: fixed;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 30px 40px;
-  z-index: 10;
-  mix-blend-mode: difference; 
-
-  .logo {
+.header{
+    position: absolute;
     display: flex;
-    gap: 10px;
-
-    .copyright {
-      font-size: 21px;
-      color: rgb(255, 255, 255);
-    }
-
-    .name {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      
-      p {
-        margin: 0;
-        font-size: 20px;
-        color: white;
-        position: relative;
-        
-        &.codeBy {
-          animation: fadeIn 1s ease-in-out 0.5s forwards;
-          opacity: 0;
-        }
-        
-        &.akhand {
-          animation: fadeIn 1s ease-in-out 0.7s forwards;
-          opacity: 0;
-        }
-        
-      }
-    }
-  }
-
-  .nav {
-    display: flex;
-    gap: 20px;
-
-    .el {
-      position: relative;
-      padding: 0 5px;
-      cursor: pointer;
-
-      a {
-        font-size: 16px;
-        color: white;
-        text-decoration: none;
-        position: relative;
-      }
-
-      .indicator {
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background-color: white;
-        transition: width 0.3s ease;
-      }
-
-      &:hover .indicator {
-        width: 100%;
-      }
-    }
-  }
-}
-
-.headerButtonContainer {
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 100;
-  padding: 30px 40px;
-  transform: scale(0);
-  
-  .button {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    
-    cursor: pointer;
-    position: relative;
-    display: flex;
+    z-index: 1;
+    top: 0;
+    color: white;
+    padding: 35px;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: 300;
+    box-sizing: border-box;
     align-items: center;
-    justify-content: center;
     
-    .burger {
-      width: 100%;
-      
-      &::after,
-      &::before {
-        content: "";
-        display: block;
-        height: 1px;
-        width: 40%;
-        margin: auto;
-        background-color: white;
+    .logo{
+        display: flex;
+        cursor: pointer;
+        p{
+            margin: 0px;
+            transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .name{
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+            margin-left: 5px;
+            transition: all 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+            p{
+                position: relative;
+                transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+                &:nth-of-type(2){
+                    padding-left: 0.3em;
+                }
+                &:nth-of-type(3){
+                    position: absolute;
+                    left: 120px;
+                    padding-left: 0.3em;
+                }
+            }
+        }
+        &:hover{
+            .copyright{
+                transform: rotate(360deg);
+            }
+            .name{
+                padding-right: 30px;
+                .codeBy{
+                    transform: translateX(-100%);
+                }
+                .dennis{
+                    transform: translateX(-65px);
+                }
+                .snellenberg{
+                    transform: translateX(-65px);
+                }
+            }
+        }
+    }
+    .nav{
+        display: flex;
+        align-items: center;
+
+        .el{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+            padding: 15px;
+            cursor: pointer;
+            &:hover{
+                .indicator{
+                    transform: scale(1);
+                }
+            }
+            .indicator{
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                top: 45px;
+                left: 50%;
+                background-color: white;
+                border-radius: 50%;
+                transform: scale(0) translateX(-50%);
+                transition: transform 0.2s cubic-bezier(0.76, 0, 0.24, 1);
+            }
+        }
+        a{
+            cursor: pointer;
+        }
+    } 
+}
+.headerButtonContainer{
+    transform: scale(0);
+    position: fixed;
+    right: 0px;
+    z-index: 4;
+
+    .button{
         position: relative;
-        transition: transform 0.3s;
-      }
-      
-      &::after {
-        top: -5px;
-      }
-      
-      &::before {
-        top: 5px;
-      }
-      
-      &.burgerActive {
-        &::after {
-          transform: rotate(45deg);
-          top: -1px;
+        margin: 20px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: #1C1D20;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .burger{
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        &::after, &::before{
+            content: "";
+            display: block;
+            height: 1px;
+            width: 40%;
+            margin: auto;
+            background-color: white;
+            position: relative;
+            transition: transform 0.3s,top 0.3s;
+        }
+    
+        &::after{
+            top: -5px;
+        }
+    
+        &::before{
+            top: 5px;
+        }
+    }
+    
+    .burgerActive{
+    
+        &::after{
+            transform: rotate(45deg);
+            top: -1px;
+        }
+    
+        &::before{
+            transform: rotate(-45deg);
+            top: 0px;
         }
         
-        &::before {
-          transform: rotate(-45deg);
-          top: 0px;
-        }
-      }
     }
-  }
 }
 
 @keyframes fadeIn {

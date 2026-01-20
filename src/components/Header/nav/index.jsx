@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import styles from './style.module.scss'
 import { links, footerLinks } from './data'
 
+
 const menuVariants = {
   initial: {
     scaleY: 0,
