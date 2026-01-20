@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
 import Nav from './nav'
 import Magnetic from '../common/Magnetic' // Importing your magnetic component
+import RoundedButton from '../common/RoundedButton';
 import styles from './style.module.scss'
 
 export default function Header() {
@@ -80,11 +81,11 @@ export default function Header() {
 
       <div ref={button} className={styles.headerButtonContainer}>
         {/* Wrapping the button in your Magnetic component */}
-        <Magnetic>
+        <RoundedButton backgroundColor="#455CE9" className={styles.button}>
           <div onClick={() => setIsActive(!isActive)} className={styles.button}>
             <div className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}></div>
           </div>
-        </Magnetic>
+        </RoundedButton>
       </div>
 
       <AnimatePresence mode="wait">
