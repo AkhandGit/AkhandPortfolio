@@ -21,32 +21,33 @@ export default function Header() {
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    // 1. Hide the main desktop header as soon as user starts scrolling
+    // 1. Header disappears IMMEDIATELY on any scroll
     gsap.to(header.current, {
       scrollTrigger: {
         trigger: document.documentElement,
         start: "top top",
-        end: 150, // Disappears within 100px of scroll
+        end: "+=1", // Just 1px of scroll
         onLeave: () => {
-          gsap.to(header.current, { y: "-100%", duration: 0.05, ease: "power2.in" })
+          gsap.to(header.current, { y: "-100%", duration: 0.25, ease: "power1.out" })
         },
         onEnterBack: () => {
-          gsap.to(header.current, { y: "0%", duration: 0.2, ease: "power2.out" })
+          gsap.to(header.current, { y: "0%", duration: 0.25, ease: "power1.out" })
         }
       }
     })
 
-    // 2. Show the burger button only after scrolling past the first "page" (Hero)
+    // 2. Burger button appears ONLY after scrolling past first viewport
     gsap.to(button.current, {
       scrollTrigger: {
         trigger: document.documentElement,
-        start: "window.innerHeight", // Appears when you hit the second section
-        onEnter: () => {
-          gsap.to(button.current, { scale: 1, duration: 0.5, ease: "back.out(1.7)" })
+        start: 0,
+        end: window.innerHeight,
+        onLeave: () => {
+          gsap.to(button.current, { scale: 1, duration: 0.25, ease: "power1.out" })
         },
-        onLeaveBack: () => {
+        onEnterBack: () => {
           gsap.to(button.current, { scale: 0, duration: 0.25, ease: "power1.out" })
-          setIsActive(false) // Safety: close nav if user scrolls back to top
+          setIsActive(false)
         }
       }
     })
