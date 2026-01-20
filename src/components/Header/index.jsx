@@ -31,7 +31,7 @@ export default function Header() {
           gsap.to(header.current, { y: "-100%", duration: 0.25, ease: "power1.out" })
         },
         onEnterBack: () => {
-          gsap.to(header.current, { y: "0%", duration: 0.25, ease: "power1.out" })
+          gsap.to(header.current, { y: "0%", duration: 0.12, ease: "power3.out" })
         }
       }
     })
@@ -41,7 +41,7 @@ export default function Header() {
       scrollTrigger: {
         trigger: document.documentElement,
         start: 0,
-        end: window.innerHeight,
+        end: 250,
         onLeave: () => {
           gsap.to(button.current, { scale: 1, duration: 0.25, ease: "power1.out" })
         },
