@@ -6,7 +6,7 @@
   width: 100%;
   padding: 30px 40px;
   z-index: 10;
-  mix-blend-mode: difference;
+  mix-blend-mode: difference; 
 
   .logo {
     display: flex;
@@ -14,7 +14,7 @@
 
     .copyright {
       font-size: 21px;
-      color: white;
+      color: rgb(255, 255, 255);
     }
 
     .name {

@@ -49,7 +49,7 @@ export default function Landing() {
       animate="enter" 
       className={styles.landing}
     >
-      {/* <img src="/images/background.png" alt="background" /> */}
+      <img src="/images/background.png" alt="background" />
       
       <div className={styles.sliderContainer}>
         <div ref={slider} className={styles.slider}>
