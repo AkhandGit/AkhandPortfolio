@@ -4,8 +4,8 @@ import { AnimatePresence } from 'framer-motion'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import gsap from 'gsap'
 import Nav from './nav'
-import Magnetic from '../common/Magnetic' // Importing your magnetic component
-import RoundedButton from '../common/RoundedButton';
+import Magnetic from '../../common/Magnetic' // Importing your magnetic component
+import RoundedButton from '../../common/RoundedButton';
 import styles from './style.module.scss'
 
 export default function Header() {
