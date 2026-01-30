@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import styles from './style.module.scss';
 import gsap from 'gsap';
-import Magnetic from '../Magnetic'; // We can nest your magnetic logic here
+import Magnetic from '../Magnetic'; 
 
 export default function Index({children, backgroundColor="#455CE9", ...attributes}) {
 
@@ -18,7 +18,7 @@ export default function Index({children, backgroundColor="#455CE9", ...attribute
   
   const manageMouseEnter = () => {
     if(timeoutId) clearTimeout(timeoutId)
-    timeline.current.tweenTo("enter");
+    timeline.current.tweenTo("enter","exit");
   }
 
   const manageMouseLeave = () => {
