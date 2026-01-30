@@ -7,10 +7,11 @@
 - [x] Dependencies installed
 - [x] Folder structure created
 - [x] Preloader component
+- [x] Build Header component
+- [x] Build Landing component
 
 ### Next Steps:
-- [ ] Build Header component
-- [ ] Build Landing component
+
 
 ### Notes:
 - Started: [today's date]
