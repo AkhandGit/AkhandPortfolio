@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import styles from './style.module.scss'
 import { links, footerLinks } from './data'
 
-
 const menuVariants = {
   initial: {
     scaleY: 0,
@@ -73,7 +72,6 @@ function TextRoll({ children, className, center = false }) {
       initial="initial"
       whileHover="hovered"
       className={className}
-      style={{ lineHeight: 0.75 }}
     >
       <div className={styles.textRollContainer}>
         {children.split("").map((letter, i) => {
@@ -155,7 +153,6 @@ export default function Nav() {
                   {link.title}
                 </TextRoll>
               </a>
-              <span className={styles.description}>[{i}]</span>
             </motion.li>
           ))}
         </ul>

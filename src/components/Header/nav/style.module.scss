@@ -40,6 +40,7 @@
           text-decoration: none;
           display: block;
           position: relative;
+          overflow: hidden; // Clip the entire link container
 
           .linkText {
             font-size: 60px;
@@ -48,20 +49,14 @@
             letter-spacing: -0.03em;
             color: var(--text-color);
             position: relative;
-            display: block;
+            display: inline-block;
             overflow: hidden;
+            line-height: 1; // Changed from 0.75 to prevent overflow
 
             @media (max-width: 768px) {
               font-size: 40px;
             }
           }
-        }
-
-        .description {
-          font-size: 12px;
-          color: var(--text-color);
-          opacity: 0.5;
-          margin-top: 4px;
         }
       }
     }
@@ -91,12 +86,18 @@
 .textRollContainer {
   position: relative;
   display: inline-block;
+  overflow: hidden;
+  height: 1em; // Constrain height to text size
 }
 
 .textRollContainerAbsolute {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: inline-block;
+  overflow: hidden;
 }
 
 .letter {

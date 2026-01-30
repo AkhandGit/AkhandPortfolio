@@ -12,20 +12,12 @@ export const links = [
     href: "/about"
   },
   {
-    title: "Services",
-    href: "/services"
-  },
-  {
     title: "Contact",
     href: "/contact"
   }
 ]
 
 export const footerLinks = [
-  {
-    title: "Facebook",
-    href: "/"
-  },
   {
     title: "LinkedIn",
     href: "/"
